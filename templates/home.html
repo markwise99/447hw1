@@ -1,0 +1,47 @@
+<!--Home page that pulls from the database and displays the table-->
+<!--Uses bootstrap classes for visual design (jumbotron, table, dropdown)-->
+<!--Can be reached with the root as well as /home-->
+{% extends "layout.html" %}
+{% block content %}
+    <div class="jumbotron">
+      <h1>CMSC 447</h1>      
+      <p>Mark Wise 447 CRUD Project</p>
+    </div>
+    <table class="table table-dark table-sm">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">NAME</th>
+            <th scope="col">ID</th>
+            <th scope="col">SCORE</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+          <tr>
+            <th scope="row">{{ loop.index }}</th>
+            <td>
+              {{ users[loop.index0].firstName }} {{ users[loop.index0].lastName }}
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Options
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="{{ url_for('update', id=users[loop.index0].idNum) }}">Update</a>
+                  <a class="dropdown-item" href="{{ url_for('delete', id=users[loop.index0].idNum) }}">Delete</a>
+                </div>
+              </div>
+            </td>
+            
+            <td>{{ users[loop.index0].idNum }}</td>
+            <td>{{ users[loop.index0].points }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="mx-auto" style="width: 200px;">
+        <a class="ml-2" href="{{ url_for('newUser') }}" >
+          <button type="button" class="btn btn-dark">Add User </button>
+        </a>
+      </div>
+{% endblock content %}

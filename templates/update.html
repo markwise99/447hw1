@@ -1,0 +1,41 @@
+<!--Same structure as newUser.html, but without the option to change the user ID-->
+<!--Displays ID of user, as well as all current data under each field-->
+{% extends "layout.html" %}
+{% block content %}
+    <div class="mx-auto" style="width: 200px;">
+        <form method ="POST" action="">
+            {{ form.hidden_tag()}}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">
+                    Update user <p>(ID: {{ user.idNum }})</p>
+                </legend>
+                <div class="form-group">
+                    {{ form.firstName.label(class="form-control-label") }}
+                    {{ form.firstName(class="form-control form-control-lg") }}
+                    <small class="text-muted ml-2">
+                        <a>Current First Name: {{ user.firstName }}</a>
+                    </small>
+                </div>
+                <div class="form-group">
+                    {{ form.lastName.label(class="form-control-label") }}
+                    {{ form.lastName(class="form-control form-control-lg") }}
+                    <small class="text-muted ml-2">
+                        <a>Current Last Name: {{ user.lastName }}</a>
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    {{ form.points.label(class="form-control-label") }}
+                    {{ form.points(class="form-control form-control-lg") }}
+                    <small class="text-muted ml-2">
+                        <a>Current Points: {{ user.points }}</a>
+                    </small>
+                </div>
+            </fieldset>
+            <div class="form-group">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+
+{% endblock content %}
